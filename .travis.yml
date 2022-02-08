@@ -1,0 +1,10 @@
+language: node.js
+node_js:
+  - 17.4.0
+script:
+  - "npm run build"
+  - "npm run test:nowatch"
+
+deploy:
+  provider: heroku
+  api_key: $HEROKU_TOKEN
