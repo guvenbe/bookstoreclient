@@ -13,7 +13,7 @@ const getBooksAction = () => async (dispatch) => {
         })
         dispatch({type: 'BOOKLISTFULFILLED'})
     }catch (error){
-        console.log(error)
+        //console.log(error)
         dispatch({type: 'BOOKLISTERROR'})
     }
 }
