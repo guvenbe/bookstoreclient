@@ -1,7 +1,20 @@
 # Getting Started with Create React App
 npm run dev   //start dev env
 npm install axios
+npm install redux react-redux redux-thunk
 
+----for testing-----------------
+npm install redux-mock-store
+npm install notistack
+npm install @material-ui/lab
+
+
+##----Materail UI Dependencies--------------------
+https://mui.com/getting-started/installation/
+npm install @mui/icons-material
+
+npm install prop-types
+--------------------------------------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

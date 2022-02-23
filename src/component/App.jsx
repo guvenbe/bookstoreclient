@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
-import baseUrl from './config';
+import baseUrl from '../config';
+import Layout from "./layout/Layout";
+import BookConstainer from "./book/BookContainer";
 
 
 const App = () => {
@@ -9,7 +11,9 @@ const App = () => {
             books => {
                 console.log(books)
             });
-    return <div>My first component again</div>
+    return (<Layout>
+        <BookConstainer/>
+    </Layout>);
 };
 
 export default App;
