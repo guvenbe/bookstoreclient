@@ -20,7 +20,7 @@ describe('BookContainer', () => {
         description: 'desc',
         releaseYear: 2019,
     }];
-    it('should render without error', () => {
+    it('should render without error', async () => {
 
         getBooksAction.mockImplementation(() => ({
             type: 'BOOKLIST',
@@ -34,7 +34,7 @@ describe('BookContainer', () => {
 
     });
 
-    it('should show loader whem isPending true', ()=>{
+    it('should show loader whem isPending true', async ()=>{
         getBooksAction.mockImplementation(() => ({
             type: 'BOOKLISTPENDING',
         }))
@@ -42,7 +42,7 @@ describe('BookContainer', () => {
         expect(getByTestId('book-loader')).toBeInTheDocument();
     })
 
-    it('should show error whem is pending error ocurred', ()=>{
+    it('should show error whem is pending error ocurred', async ()=>{
         getBooksAction.mockImplementation(() => ({
             type: 'BOOKLISTERROR',
         }))
