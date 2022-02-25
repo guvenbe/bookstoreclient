@@ -16,7 +16,7 @@ import App from "../App";
 
 describe("App component", () => {
 
-    it("should render app with error", () => {
+    it("should render app without error", () => {
         const { asFragment } = renderWithRedux(<App />,{});
         expect(asFragment()).toMatchSnapshot();
     });
