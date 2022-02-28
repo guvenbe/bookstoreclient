@@ -1,12 +1,58 @@
+https://frontend.turing.edu/lessons/module-3/redux-i.html?ads_cmpid=6451354298&ads_adid=76255849919&ads_matchtype=&ads_network=g&ads_creative=517671727591&utm_term=&ads_targetid=dsa-19959388920&utm_campaign=&utm_source=adwords&utm_medium=ppc&ttv=2&gclid=CjwKCAiA9tyQBhAIEiwA6tdCrFYotoYMx2YuqDaWYnq2lRt0q5BrW8gf3umdGAzw4-mBsiInCEEixhoCImYQAvD_BwE
+
+
+Vocabulary
+
+****``Redux - a library that allows JavaScript apps to manage application state
+
+action - an object containing a type and a payload, used to tell the reducer how to update the store
+
+action creator - a function that takes in a payload and creates an action object
+
+reducer - a function that takes in the initial state and an action, and which returns that specific part of the global store
+
+combineReducers - a function from Redux that allows us to put together all our reducers into a single object (often called the rootReducer)
+
+store/global state - an object; think of it as a mega state that is accessed and updated with its own functions (similar to how React state is updated with setState)
+
+createStore - a function from Redux that uses the rootReducer to create the store
+
+dispatch - a function from Redux that sends an action object to its reducer (which updates the store)
+
+Provider - a component from react-redux that wraps our App component and allows each child component to be connected to the store
+
+mapStateToProps - a function we create that takes in the global state object and returns an object to be added to a component as part of its props object; it allows the component to access the data in the store
+
+mapDispatchToProps - a function we create that takes in dispatch and returns an object to be added to a component as part of its props object; it allows the component to update the data in the store
+
+connect - a function from react-redux that allows us to connect a component to the store by adding items from the store to our component props, as well as adding dispatch to our component props
+
+container - what we call a component that has been connected to the store``****
+
 # Getting Started with Create React App
 npm run dev   //start dev env
 npm install axios
 npm install redux react-redux redux-thunk
 
+npm add react-router-dom
+npm add react-router-dom
+
 ----for testing-----------------
 npm install redux-mock-store
 npm install notistack
 npm install @material-ui/lab
+
+for schema validation
+npm install formik
+npm install yup
+
+incase dependency conflict
+npm audit fix
+npm audit fix --force
+
+---Helpful
+in console type nelow to see whait is in local storage
+window.localstorage
 
 
 ##----Materail UI Dependencies--------------------

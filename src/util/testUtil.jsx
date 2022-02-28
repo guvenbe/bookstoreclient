@@ -15,7 +15,9 @@ const renderWithRedux = (
 ) => ({
     ...render(
         <Provider store={store}>
-            {ui}
+            <SnackbarProvider maxSnack={3}>
+                {ui}
+            </SnackbarProvider>
         </Provider>
     ),
 });

@@ -5,9 +5,23 @@ import reduxThunk from 'redux-thunk';
 import {createStore, applyMiddleware} from "redux";
 import App from "./component/App";
 import reducers from './module'
+import axios from 'axios';
 
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore)
+axios.interceptors.request.use(
+    config => {
+        const  token = window.localStorage.getItem('bookstore-token');
+        if(token !=null){
+            config.headers.Authorization = token;
+        }
+        return config
+    },
+    error => {
+        return Promise.reject(error)
+    }
+)
+
 
 ReactDOM.render(
     <Provider
@@ -17,7 +31,7 @@ ReactDOM.render(
             window.__REDUX_DEVTOOLS_EXTENSION__()
         )}
     >
-        <App />
+        <App/>
     </Provider>,
     document.getElementById('root')
 );

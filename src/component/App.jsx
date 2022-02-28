@@ -1,19 +1,31 @@
 import React from "react";
-import axios from "axios";
-import baseUrl from '../config';
+// import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Layout from "./layout/Layout";
 import BookConstainer from "./book/BookContainer";
-
+import Login from "./user/Login";
+import {SnackbarProvider} from 'notistack';
+import Auth from "./Auth";
 
 const App = () => {
-    axios(`${baseUrl}/api/v1/books`)
-        .then(
-            books => {
-                console.log(books)
-            });
-    return (<Layout>
-        <BookConstainer/>
-    </Layout>);
+    return (
+        <SnackbarProvider maxSnack={3}>
+            <Router>
+                <Layout>
+                    <Switch>
+                        <Route path="/login">
+                            <Login/>
+                        </Route>
+                        <Route exact path="/">
+                            <Auth>
+                                <BookConstainer/>
+                            </Auth>
+                        </Route>
+                    </Switch>
+                </Layout>
+            </Router>
+        </SnackbarProvider>
+    );
 };
 
 export default App;
