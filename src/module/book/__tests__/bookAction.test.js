@@ -36,9 +36,7 @@ describe('BookActions', () => {
             }]
         })
     });
-    it('should be able dispatch success action', async () => {
 
-    })
 
     it('should be able dispatch book by title action', async () => {
         const store = mockStore({});
