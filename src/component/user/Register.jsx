@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import {Box, Button, Paper, TextField, Typography} from "@mui/material";
 import * as  yup from 'yup';
-import formik, {useFormik} from "formik";
 import {useDispatch, useSelector} from 'react-redux';
 import {registerAction} from "../../module/user/userAction";
 import registerStyle from "./RegisterStyle";
