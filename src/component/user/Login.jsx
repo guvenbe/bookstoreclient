@@ -17,38 +17,46 @@ const validationSchema = yup.object({
     password: yup
         .string('Enter your password')
         .min(8, 'Password should be of minimum 8 char length')
-        .required('Password is required')
-})
+    .required('Password is required'),
+});
 
 const Login = () => {
     const classes = makeStyle();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const loginPromise = useSelector(getUserPromise);
     const {enqueueSnackbar} = useSnackbar();
     const history = useHistory();
 
     useEffect(() => {
         if (loginPromise.isErrorOcurred) {
-            enqueueSnackbar('Username and password wrong!', {
-                variant: 'error'
-            })
+            enqueueSnackbar('Userrname and password wrong!', {
+                variant: 'error',
+            });
         } else if (loginPromise.isFulfilled) {
-            enqueueSnackbar('Login Success', {variant: 'success'})
-            history.push("/");
+            enqueueSnackbar('Login Success', {
+                variant: 'success',
+            });
+            history.push('/');
         }
+    }, [loginPromise, enqueueSnackbar, history]);
 
-    }, [loginPromise, enqueueSnackbar, history])
     const formik = useFormik({
         initialValues: {
             email: '',
-            password: ''
+            password: '',
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            dispatch(loginAction(values.email, values.password))
+            dispatch(loginAction(values.email, values.password));
         },
-    })
-    return <form autoComplete='off' noValidate onSubmit={formik.handleSubmit}>
+  });
+
+  const handleRegister = () => {
+    history.push('/register');
+  };
+
+  return (
+    <form autoComplete='off' noValidate onSubmit={formik.handleSubmit}>
         <Box className={classes.wrapper}>
             <Paper className={classes.paper}>
                 <Typography variant="h4">Book Store Login</Typography>
@@ -82,13 +90,15 @@ const Login = () => {
                     className={classes.topMargin}
                     type='submit'
                     variant='contained'
-                    color='primary' disabled={loginPromise.isPending}>
+            color='primary'
+            disabled={loginPromise.isPending}
+          >
                     Login
                 </Button>
             </Paper>
         </Box>
-
     </form>
-}
+  );
+};
 
 export default Login;

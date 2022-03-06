@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Box, Button, Paper, TextField, Typography} from "@mui/material";
 import * as  yup from 'yup';
 import formik, {useFormik} from "formik";
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {registerAction} from "../../module/user/userAction";
+import registerStyle from "./RegisterStyle";
+import {useHistory} from "react-router-dom";
+import {useSnackbar} from "notistack";
+import {getUserRegisterPromise} from "../../module/user/userSelectors";
 
 const validationSchema = yup.object({
     name: yup.string().required('Username is required'),
@@ -17,7 +21,25 @@ const validationSchema = yup.object({
         .min(8, 'Password should be of minimum 8 char length'),
 });
 const Register = () => {
-    const  dispatch =useDispatch();
+    const classes = registerStyle();
+    const dispatch =useDispatch();
+    const registerPromise = useSelector(getUserRegisterPromise);
+    const  history = useHistory()
+    const {enqueueSnackbar} = useSnackbar();
+    useEffect(() =>{
+        if (registerPromise.isErrorOcurred) {
+            enqueueSnackbar('Server error occured!', {
+                variant: 'error',
+            });
+        } else if (registerPromise.isFulfilled) {
+            enqueueSnackbar('User Added Successfully!', {
+                variant: 'success',
+            });
+            history.push('/login');
+            // dispatch action to set register promise values
+        }
+    }, [registerPromise, enqueueSnackbar, history]);
+
     const registerForm = useFormik({
         validationSchema,
         initialValues: {email: '', password: '', name: ''},
@@ -25,11 +47,12 @@ const Register = () => {
             dispatch(registerAction(values));
         }
     })
-    return <Box>
-        <Typography>User Registration</Typography>
+    return <Box className={classes.wrapper}>
+        <Typography className={classes.heading}>User Registration</Typography>
         <form autoComplete='off' noValidate onSubmit={registerForm.handleSubmit}>
-            <Paper>
+            <Paper className={classes.paper}>
                 <TextField
+                    className={classes.margin12}
                     id="name"
                     name="name"
                     variant="outlined"
@@ -40,6 +63,7 @@ const Register = () => {
                     error={registerForm.touched.name && Boolean(registerForm.errors.name)}
                 />
                 <TextField
+                    className={classes.margin12}
                     id="email"
                     name="email"
                     variant="outlined"
@@ -50,6 +74,7 @@ const Register = () => {
                     error={registerForm.touched.email && Boolean(registerForm.errors.email)}
                 />
                 <TextField
+                    className={classes.margin12}
                     id="password"
                     name="password"
                     variant="outlined"
@@ -59,7 +84,7 @@ const Register = () => {
                     helperText={registerForm.touched.password && registerForm.errors.password}
                     error={registerForm.touched.password && Boolean(registerForm.errors.password)}
                 />
-                <Button type='submit'
+                <Button className={classes.button} type='submit'
                         variant='contained'
                         color='primary'>Register
                 </Button>
