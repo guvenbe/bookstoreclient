@@ -7,6 +7,7 @@ import registerStyle from "./RegisterStyle";
 import {useHistory} from "react-router-dom";
 import {useSnackbar} from "notistack";
 import {getUserRegisterPromise} from "../../module/user/userSelectors";
+import {useFormik} from "formik";
 
 const validationSchema = yup.object({
     name: yup.string().required('Username is required'),
