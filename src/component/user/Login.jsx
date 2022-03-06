@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {Box, Button, Paper, TextField, Typography} from "@mui/material";
+import {Box, Button, Link, Paper, TextField, Typography} from "@mui/material";
 import makeStyle from './LoginStyle'
 import * as yup from 'yup';
 import {useFormik} from "formik";
@@ -95,6 +95,8 @@ const Login = () => {
           >
                     Login
                 </Button>
+                <br/>
+                <Link component="button" variant="body2" onClick={handleRegister}>Register</Link>
             </Paper>
         </Box>
     </form>
